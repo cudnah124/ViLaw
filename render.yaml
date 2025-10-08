@@ -4,7 +4,7 @@ services:
     env: python
     plan: free
     buildCommand: pip install -r deploy/requirements.txt
-    startCommand: python deploy/app.py
+    startCommand: python app.py
     autoDeploy: true
     envVars:
       - key: GOOGLE_API_KEY
