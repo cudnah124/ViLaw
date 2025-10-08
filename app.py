@@ -111,6 +111,12 @@ class ChatRequest(BaseModel):
 app = FastAPI(title="ViLawAI Chatbot API")
 
 
+@app.get("/ping")
+async def ping():
+    """Health check endpoint to keep server alive"""
+    return {"status": "ok", "message": "ViLawAI Chatbot is running"}
+
+
 @app.post("/chat")
 async def chat(req: ChatRequest):
     question = (req.question or "").strip()
