@@ -4,7 +4,7 @@ services:
     env: python
     plan: free
     buildCommand: pip install --upgrade pip && pip install -r deploy/requirements.txt
-    startCommand: python -m uvicorn deploy.app:app --host 0.0.0.0 --port $PORT
+    startCommand: python -m uvicorn app:app --host 0.0.0.0 --port $PORT
     autoDeploy: true
     envVars:
       - key: GOOGLE_API_KEY
