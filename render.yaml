@@ -3,8 +3,8 @@ services:
     name: vilawai-chatbot
     env: python
     plan: free
-    buildCommand: pip install --upgrade pip && pip install -r deploy/requirements.txt
-    startCommand: python -m uvicorn app:app --host 0.0.0.0 --port $PORT
+    buildCommand: pip install -r deploy/requirements.txt
+    startCommand: python deploy/app.py
     autoDeploy: true
     envVars:
       - key: GOOGLE_API_KEY

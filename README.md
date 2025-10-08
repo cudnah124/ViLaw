@@ -1,44 +1,23 @@
 ## ViLawAI Chatbot Deployment
 
-### 1) Copy the Chroma DB
+### Setup
 
-Place the existing `law1_chroma_db` directory inside this `deploy/` folder:
+1. Copy `law1_chroma_db` folder into `deploy/` directory
+2. Set `GOOGLE_API_KEY` in environment variables
+3. Run: `python deploy/app.py`
 
-```
-deploy/
-  law1_chroma_db/
-    chroma.sqlite3
-    ...
-```
+### Deploy to Render
 
-Alternatively, set an absolute path via environment variable `CHROMA_DB_DIR`.
+1. Push to GitHub
+2. Connect repo to Render
+3. Set `GOOGLE_API_KEY` in Render environment variables
+4. Deploy
 
-### 2) Configure API Key
+### API Usage
 
-Create a `.env` file next to `app.py`:
+POST `/chat` with:
 
-```
-GOOGLE_API_KEY=your_api_key_here
-# Optional: override DB path
-# CHROMA_DB_DIR=C:\\absolute\\path\\to\\law1_chroma_db
-```
-
-### 3) Install dependencies
-
-```
-pip install -r requirements.txt
-```
-
-### 4) Run the API
-
-```
-uvicorn deploy.app:app --host 0.0.0.0 --port 8000
-```
-
-### 5) Example request
-
-```
-POST http://localhost:8000/chat
+```json
 {
   "question": "Thủ tục đăng ký kết hôn?",
   "session_id": "user-1"

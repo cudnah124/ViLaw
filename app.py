@@ -10,7 +10,6 @@ from langchain_google_genai import GoogleGenerativeAIEmbeddings, ChatGoogleGener
 from langchain_community.vectorstores import Chroma
 from langchain.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langchain.schema.output_parser import StrOutputParser
-from langchain.schema.runnable import RunnablePassthrough
 from langchain.docstore.document import Document
 from langchain_community.chat_message_histories.in_memory import ChatMessageHistory
 from langchain_core.runnables.history import RunnableWithMessageHistory
@@ -128,6 +127,7 @@ async def chat(req: ChatRequest):
         raise HTTPException(status_code=500, detail=f"Processing error: {e}")
 
 
-# To run: uvicorn deploy.app:app --host 0.0.0.0 --port 8000
-
-
+if __name__ == "__main__":
+    import uvicorn
+    port = int(os.getenv("PORT", 8000))
+    uvicorn.run(app, host="0.0.0.0", port=port)
